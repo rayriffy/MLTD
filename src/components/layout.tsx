@@ -7,7 +7,7 @@ import Header from "./header"
 
 const GlobalStyle = createGlobalStyle`
   @import url("https://use.typekit.net/ggp3ryx.css");
-  @import url('https://fonts.googleapis.com/css?family=Raleway:400,800&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Raleway:200,300,400,600,800,900&display=swap');
 
   html {
     font-size: 16px; 
@@ -35,7 +35,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header />
       <div>
         <main>{children}</main>
       </div>

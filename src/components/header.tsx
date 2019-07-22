@@ -2,11 +2,7 @@ import React from "react"
 
 import Navbar from "./navbar"
 
-interface IProps {
-  siteTitle: string
-}
-
-const Header: React.SFC<IProps> = () => {
+const Header: React.SFC = () => {
   const navTabs = [
     {
       href: "#!",

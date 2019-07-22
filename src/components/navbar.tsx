@@ -8,13 +8,12 @@ const NavContainer = styled(Box)`
   display: flex;
   align-items: center;
 
-  background-color: #333;
-  color: #fff;
+  background-color: rgb(237, 236, 238);
   padding: 0.8rem 2rem;
 `
 
 const NavLink = styled(Link)`
-  color: #fff;
+  color: rgb(170, 170, 170);
   text-decoration: none;
   padding: 0 0.5rem;
 `
@@ -38,10 +37,11 @@ const Navbar: React.SFC<IProps> = props => {
         <NavLink to="/">
           <NavText
             fontSize="2rem"
-            fontWeight="800"
+            fontWeight="900"
             css={{
               "& span": {
-                fontSize: "1.2rem",
+                fontSize: "1.3rem",
+                fontWeight: "800",
               },
             }}
           >
@@ -54,7 +54,7 @@ const Navbar: React.SFC<IProps> = props => {
           const { href, name } = tab
           return (
             <NavLink to={href} key={name}>
-              <NavText>{name}</NavText>
+              <NavText fontSize="1.3rem">{name}</NavText>
             </NavLink>
           )
         })}
