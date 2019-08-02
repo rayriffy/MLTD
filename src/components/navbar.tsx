@@ -1,66 +1,79 @@
 import React, { ReactNode } from "react"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import { Flex, Box, Text } from "rebass"
 
-const NavContainer = styled(Box)`
-  width: 100%;
+import { Box, Text } from "rebass"
+
+const NavContainer = styled.div`
   display: flex;
   align-items: center;
 
-  background-color: rgb(237, 236, 238);
-  padding: 0.8rem 2rem;
+  background: #f4f4f4;
+  padding: 0.5rem 1rem;
 `
-
+const NavItem = styled(Box)`
+  display: flex;
+`
 const NavLink = styled(Link)`
-  color: rgb(170, 170, 170);
-  text-decoration: none;
-  padding: 0 0.5rem;
+  display: flex;
+  align-items: flex-end;
+
+  &:link,
+  &:visited {
+    text-decoration: none;
+    color: #333;
+  }
+
+  &:hover,
+  &:active {
+    text-decoration: none;
+    color: coral;
+  }
+`
+const NavText = styled(Text)`
+  padding: 0 0.2rem;
 `
 
-const NavText = styled(Text)``
-
-interface IProps {
-  children?: ReactNode
-  tabs: {
-    name: string
-    href: string
-  }[]
-}
-
-const Navbar: React.SFC<IProps> = props => {
-  const { tabs } = props
+const Component: React.SFC = () => {
+  const tabs = [
+    { href: "/", name: "Idols" },
+    { href: "/", name: "Cards" },
+    { href: "/", name: "Songs" },
+    { href: "/", name: "Costumes" },
+    { href: "/", name: "Events" },
+  ]
 
   return (
-    <NavContainer>
-      <Flex>
-        <NavLink to="/">
-          <NavText
-            fontSize="2rem"
-            fontWeight="900"
-            css={{
-              "& span": {
-                fontSize: "1.3rem",
-                fontWeight: "800",
-              },
+    <>
+      <NavContainer>
+        <NavItem>
+          <NavLink
+            style={{
+              color: "#333",
             }}
+            to="/"
           >
-            MTDL <span>English Database</span>
-          </NavText>
-        </NavLink>
-      </Flex>
-      <Flex ml="auto">
-        {tabs.map(tab => {
-          const { href, name } = tab
-          return (
-            <NavLink to={href} key={name}>
-              <NavText fontSize="1.3rem">{name}</NavText>
-            </NavLink>
-          )
-        })}
-      </Flex>
-    </NavContainer>
+            <NavText fontSize={4} fontWeight={900}>
+              MLTD
+            </NavText>
+            <NavText fontSize={2} fontWeight={800}>
+              English database
+            </NavText>
+          </NavLink>
+        </NavItem>
+        <NavItem ml="auto">
+          {tabs.map(tab => {
+            const { href, name } = tab
+            return (
+              <NavLink key={name} to={href}>
+                <NavText>{name}</NavText>
+              </NavLink>
+            )
+          })}
+        </NavItem>
+      </NavContainer>
+    </>
   )
 }
 
-export default Navbar
+export default Component

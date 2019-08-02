@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Amami Haruka",
+    "cv": "Abe Rika",
+    "imageColor": "#99b7dc",
+    "tdType": "Fairy",
+    "gmType": "Dance",
+    "height": "160cm",
+    "weight": "43kg",
+    "bloodType": "B",
+    "threeSizes": [73, 54, 77],
+    "hometown": "Kanagawa",
+    "hobby": "Magic tricks",
+    "specialSkill": "Baton twirling",
+    "likes": "Crossword puzzles",
+    "age": 17,
+    "bd": "Jan 27",
+    "writingHand": "Right",
+    "zodiacSign": "Aquarius",
+    "cards": [
+      {
+        "name": "みんなへ愛をこめて"
+      }
+    ]
+  },
+  {
+    "name": "Manabe Mizuki",
+    "cv": "Abe Rika",
+    "imageColor": "#99b7dc",
+    "tdType": "Fairy",
+    "gmType": "Dance",
+    "height": "160cm",
+    "weight": "43kg",
+    "bloodType": "B",
+    "threeSizes": [73, 54, 77],
+    "hometown": "Kanagawa",
+    "hobby": "Magic tricks",
+    "specialSkill": "Baton twirling",
+    "likes": "Crossword puzzles",
+    "age": 17,
+    "bd": "Jan 27",
+    "writingHand": "Right",
+    "zodiacSign": "Aquarius"
+  }
+]

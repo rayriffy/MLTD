@@ -1,9 +1,9 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { createGlobalStyle } from "styled-components"
 
-import Header from "./header"
+import Navbar from "./navbar"
+import Footer from "./footer"
 
 const GlobalStyle = createGlobalStyle`
   @import url("https://use.typekit.net/ggp3ryx.css");
@@ -19,32 +19,25 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
   }
+
+  *, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
 `
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
+const Component: React.SFC = ({ children }) => {
   return (
     <>
       <GlobalStyle />
-      <Header />
       <div>
+        <Navbar />
         <main>{children}</main>
+        <Footer />
       </div>
     </>
   )
 }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
-
-export default Layout
+export default Component
