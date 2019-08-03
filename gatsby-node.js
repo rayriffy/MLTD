@@ -6,10 +6,10 @@
 
 // You can delete this file if you're not using it
 const path = require("path")
+const _ = require("lodash")
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const idolPage = path.resolve(`src/templates/idol-page.tsx`)
 
   return graphql(`
     query idol {
@@ -34,6 +34,13 @@ exports.createPages = ({ graphql, actions }) => {
             bd
             writingHand
             zodiacSign
+            cards {
+              name
+              avability
+              passive
+              rarity
+              stat
+            }
           }
         }
       }
@@ -44,11 +51,12 @@ exports.createPages = ({ graphql, actions }) => {
     }
 
     res.data.allIdolsJson.edges.forEach(edge => {
-      console.log(res.data.allIdolsJson.edges.indexOf(edge) + 1)
       createPage({
         path: `/chara/show/${res.data.allIdolsJson.edges.indexOf(edge) + 1}`,
-        component: idolPage,
-        context: {},
+        component: path.resolve(`src/templates/idol-page.tsx`),
+        context: {
+          idolInfo: edge.node,
+        },
       })
     })
   })
