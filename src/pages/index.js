@@ -1,7 +1,6 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import CharacterInfo from "../components/character"
 import SEO from "../components/seo"
 
 const IndexPage = () => (
