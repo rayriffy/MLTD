@@ -9,9 +9,10 @@ interface IProps {
   name: string
 }
 
-const Container = styled(Flex)`
+const Container = styled(Box)`
   background-image: linear-gradient(to top, #fff, #e1e1e1);
-  display: flex;
+  width: 100%;
+
   font-family: sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
@@ -21,18 +22,11 @@ const Container = styled(Flex)`
   }
 `
 
-const ColorSpan = styled.span`
-  padding: 3px 5px;
+const ColorSpan = styled(Box)`
+  display: inline-block;
+  color: white;
   background: #99b7dc;
-  border-radius: 5px;
-`
-
-const IdolInfoContainer = styled(Flex)`
-  flex-basis: 60%;
-
-  br {
-    width: 100%;
-  }
+  border-radius: 999px;
 `
 
 const Image = styled(Img)`
@@ -61,49 +55,117 @@ const Component: React.SFC<IProps> = ({ name }) => {
   `)
 
   return (
-    <Container width="100%" mb="4rem">
-      <Box width="30%">
-        <Image fluid={data.img.childImageSharp.fluid}>
-          This is going to be replaced by Image.
-        </Image>
-      </Box>
-      <IdolInfoContainer m="auto" ml={-3} flexDirection="column" alignItems="strech">
-        <Flex alignItems="center">
-          <Text fontSize={5} fontWeight="bold">
-            MIZUKI
-          </Text>
-          <Text ml="auto" mr={4} fontSize={3}>
-            CV: <b>RIKA ABE</b>
-          </Text>
-        </Flex>
-        <br />
+    <Container px={4} pt={3}>
+      <Box py={2}>
         <Flex>
-          <Text>
-            Image Color: <ColorSpan>blue</ColorSpan> #99b7dc
-          </Text>
+          <Box width={3 / 10}>
+            <Image fluid={data.img.childImageSharp.fluid}>
+              This is going to be replaced by Image.
+            </Image>
+          </Box>
+          <Box width={7 / 10} px={3}>
+            <Flex>
+              <Box>
+                <Text fontSize={26} fontWeight={400}>MIZUKI</Text>
+                <Text fontSize={12} fontWeight={300}>MAKABE 真壁瑞希</Text>
+              </Box>
+              <Box mx={`auto`}></Box>
+              <Box>
+                <Flex>
+                  <Text fontSize={22}>CV: </Text>
+                  <Text fontSize={22} fontWeight={700} pl={2}>RIKA ABE</Text>
+                </Flex>
+              </Box>
+              <Box></Box>
+            </Flex>
+            <Box py={2}>
+              <hr />
+            </Box>
+            <Box>
+              <Flex py={2}>
+                <Box width={[1, 1 / 2]}>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Image color: </Text>
+                    <ColorSpan p={1}><Text fontSize={14}>Blue</Text></ColorSpan>
+                    <Text fontSize={14} color={`#99b7dc`} fontWeight={200} px={1}>#99b7dc</Text>
+                  </Flex>
+                </Box>
+              </Flex>
+              <Flex py={2} flexWrap={`wrap`}>
+                <Box width={[1, 1 / 2]}>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Theater Days Type: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Fairy</Text>
+                  </Flex>
+                </Box>
+                <Box width={[1, 1 / 2]}>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Greemas Type: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Dance</Text>
+                  </Flex>
+                </Box>
+              </Flex>
+              <Flex py={2} flexWrap={`wrap`}>
+                <Box width={[1, 1, 1, 1 / 2]}>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Height: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>160 cm</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Weight: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>43 kg</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Blod Type: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>B</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Three Sizes: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>73 / 54 / 77</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Hometown: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Kanagawa</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Hobby: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Magic tricks</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Special Skill: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Baton twirling</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Likes: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Crossword puzzles</Text>
+                  </Flex>
+                </Box>
+                <Box width={[1, 1, 1, 1 / 2]}>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Age: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>17</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Birthday: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>January 27th</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Writing Hand: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Right</Text>
+                  </Flex>
+                  <Flex alignItems={`center`}>
+                    <Text fontSize={14} fontWeight={300} px={1}>Zodiac Sign: </Text>
+                    <Text fontSize={14} fontWeight={200} px={2}>Aquarius</Text>
+                  </Flex>
+                </Box>
+              </Flex>
+            </Box>
+          </Box>
         </Flex>
-        <Flex mt={3}>
-          <Text>Theater Days Type: Fairy</Text>
-          <Text ml="5rem">Greenmas Type: Dance</Text>
-        </Flex>
-        <Flex mt={3}>
-          <ul>
-            <li>Height: 160 cm</li>
-            <li>Weight: 63 kg</li>
-            <li>Blood Type: B</li>
-            <li>Three Sizes: 73 / 54 / 77</li>
-            <li>Hometown: Kanagawa</li>
-            <li>Hobby: Magic tricks</li>
-            <li>Special Skill: Baton twirling</li>
-            <li>Likes: Crossword puzzles</li>
-          </ul>
-          <ul style={{ marginLeft: "4rem" }}>
-            <li>Age: 17</li>
-            <li>Birth Day: January 27th</li>
-            <li>Writting Hand: Right</li>
-          </ul>
-        </Flex>
-      </IdolInfoContainer>
+      </Box>
+      <Box py={2}>
+        {/* Tabs here */}
+      </Box>
     </Container>
   )
 }
