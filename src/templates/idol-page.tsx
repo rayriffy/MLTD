@@ -67,7 +67,7 @@ const Page: React.SFC<IProps> = ({ pageContext }) => {
       <Layout>
         <Container>
           <IdolHeader name={name}></IdolHeader>
-          <Flex>{cardsRender(name, cards)}</Flex>
+          {/* <Flex>{cardsRender(name, cards)}</Flex> */}
         </Container>
       </Layout>
     </>
