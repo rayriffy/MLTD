@@ -23,12 +23,6 @@ const NavLink = styled(Link)`
     text-decoration: none;
     color: #333;
   }
-
-  &:hover,
-  &:active {
-    text-decoration: none;
-    color: coral;
-  }
 `
 const NavText = styled(Text)`
   padding: 0 0.2rem;

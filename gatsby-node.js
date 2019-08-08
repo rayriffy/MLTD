@@ -11,29 +11,30 @@ const _ = require("lodash")
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
-  return graphql(`
-    query idol {
-      allIdolsJson {
+  const dataResult = await graphql(`
+    query {
+      idols: allIdolsJson {
         edges {
           node {
-            id
-            name
-            cv
-            imageColor
-            tdType
+            firstName
             gmType
             height
-            weight
-            bloodType
-            threeSizes
-            hometown
             hobby
-            specialSkill
+            hometown
+            id
+            lastName
             likes
-            age
-            bd
+            specialSkill
+            tdType
+            threeSizes
             writingHand
+            weight
             zodiacSign
+            cv
+            color
+            bd
+            age
+            bloodType
             cards {
               name
               avability
@@ -45,19 +46,18 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `).then(res => {
-    if (res.errors) {
-      throw res.errors
-    }
+  `)
 
-    res.data.allIdolsJson.edges.forEach(edge => {
-      createPage({
-        path: `/chara/show/${res.data.allIdolsJson.edges.indexOf(edge) + 1}`,
-        component: path.resolve(`src/templates/idol-page.tsx`),
-        context: {
-          idolInfo: edge.node,
-        },
-      })
+  const { site, idols } = dataResult.data
+  idols.edges.map((idol, index) => {
+    const reg = `/${idol.node.firstName.toLowerCase()}/`
+    createPage({
+      path: `chara/show/${index + 1}`,
+      component: path.resolve("./src/templates/idol-page.tsx"),
+      context: {
+        idol,
+        reg,
+      },
     })
   })
 }

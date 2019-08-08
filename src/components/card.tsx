@@ -1,17 +1,22 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
-import { graphql, useStaticQuery } from "gatsby"
-import _ from "lodash"
+import keyframs from "styled-components"
 
-import Img from "gatsby-image"
+import Img, { FluidObject } from "gatsby-image"
 
 import { Text, Box } from "rebass"
+import { keyframes } from "styled-components"
 
-interface TextProps {
-  color?: string
-}
+const fade = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
 
-const CardContainer = styled.div`
+const CardContainer = styled(Box)`
   display: flex;
   position: relative;
   flex-direction: column;
@@ -19,14 +24,24 @@ const CardContainer = styled.div`
   border-radius: 15px;
   color: #fff;
 
-  min-width: 25rem;
   overflow: hidden;
-  box-shadow: 0.5rem 0.7rem 3rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0.6rem 0.9rem 1rem rgba(0, 0, 0, 0.3);
+  transition: all 0.2s;
+
+  &:hover {
+    box-shadow: 0.6rem 0.9rem 1.5rem rgba(0, 0, 0, 0.3);
+    transform: scale(1.02);
+  }
 `
 
 const Image = styled(Img)`
   width: 100%;
+  height: 100%;
   border-radius: 15px 15px 0 0;
+
+  &:hover {
+    animation: ${fade} 0.2s;
+  }
 `
 const RarityText = styled(Text)`
   position: absolute;
@@ -62,61 +77,51 @@ const TagContainer = styled(Box)`
   align-items: center;
 `
 
-const TagText = styled(Text)<TextProps>`
+const TagText = styled(Text)<{ color?: string }>`
   color: ${({ color }) => (color ? color : `#fff`)};
   background: none;
 `
 
 interface IProps {
-  idolName: string
-  name?: string
-  avability: string
-  passive: string
+  images: {
+    id: string
+    fluid: FluidObject
+  }[]
+  avability?: string
+  passive?: string
   rarity: string
-  stat: string
+  stat?: string
 }
 
 const Component: React.SFC<IProps> = ({
-  idolName,
+  images,
   avability,
   passive,
   rarity,
   stat,
 }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      img: file(
-        relativePath: { eq: "mizuki.card.みんなへ愛をこめて.land.png" }
-      ) {
-        id
-        childImageSharp {
-          fluid(maxWidth: 1000, quality: 80) {
-            base64
-            tracedSVG
-            aspectRatio
-            src
-            srcSet
-            srcWebp
-            srcSetWebp
-            sizes
-          }
-        }
-      }
-    }
-  `)
-
+  const [isMouseOver, setIsMouseOver] = React.useState(false)
+  console.log(images)
   return (
     <>
-      <CardContainer>
-        <Image fluid={data.img.childImageSharp.fluid} />
+      <CardContainer
+        onMouseOver={() => setIsMouseOver(true)}
+        onMouseOut={() => setIsMouseOver(false)}
+        width={[1 / 3]}
+      >
+        {images.length === 1 || isMouseOver ? (
+          <Image fluid={images[0].fluid} alt={`Card Image`} />
+        ) : (
+          <Image fluid={images[1].fluid} alt={`Card Image`} />
+        )}
         <RarityText>{rarity}</RarityText>
         <CardInfo>
           <Text py={2}>{avability}</Text>
           <TagContainer style={{ top: "50%", left: "95%" }}>
-            <TagText pr={2}>{stat}</TagText>
+            <TagText pr={2}>{passive}</TagText>
           </TagContainer>
           <TagContainer style={{ top: "50%", left: "5%" }}>
-            <TagText pl={2}>{passive}</TagText>
+            <TagText pl={2}>{stat}</TagText>
           </TagContainer>
         </CardInfo>
       </CardContainer>

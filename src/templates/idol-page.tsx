@@ -1,77 +1,116 @@
-import React from "react"
+import React, { createContext } from "react"
 import styled from "styled-components"
+import { graphql } from "gatsby"
+import { FluidObject } from "gatsby-image"
+
+import IdolContext from "../providers/idol-context"
 
 import Layout from "../components/layout"
 import IdolHeader from "../components/idol-header"
-import Card from "../components/card"
+import IdolBody from "../components/idol-body"
 import { Flex } from "rebass"
 
 const Container = styled(Flex)`
   width: 100%;
+  flex-direction: column;
 `
 
 interface ICard {
-  name?: string
+  name: string // Name of Card
   avability: string
+  passive: string
   rarity: string
   stat: string
-  passive: string
+}
+
+interface IIdol {
+  node: {
+    id: string
+    firstName: string
+    lastName: string
+    tdType: string
+    gmType: string
+    height: string
+    weight: string
+    hobby: string
+    hometown: string
+    likes: string
+    specialSkill: string
+    threeSizes: number[]
+    writingHand: string
+    zodiacSign: string
+    cv: string
+    color: string
+    bd: string
+    age: string
+    bloodType: string
+    cards: ICard[]
+  }
 }
 
 interface IProps {
   pageContext: {
-    idolInfo?: {
-      id: string
-      name: string
-      cv: string
-      imageColor: string
-      tdType: string
-      gmType: string
-      height: string
-      weight: string
-      bloodType: string
-      threeSizes: number[]
-      hometown: string
-      hobby: string
-      specialSkill: string
-      likes: string
-      age: number
-      bd: string
-      writingHand: string
-      zodiacSign: string
-      cards: ICard[]
+    idol: IIdol
+  }
+  data: {
+    allImageSharp: {
+      edges: {
+        node: {
+          id: string
+          fluid: FluidObject
+        }
+      }[]
     }
   }
 }
 
-const cardsRender = (name, cards) => {
-  return cards.map((card: ICard, index: number) => {
-    const { avability, passive, rarity, stat } = card
-    return (
-      <Card
-        key={index}
-        idolName={name}
-        avability={avability}
-        passive={passive}
-        rarity={rarity}
-        stat={stat}
-      />
-    )
-  })
-}
-
-const Page: React.SFC<IProps> = ({ pageContext }) => {
-  const { name, cards } = pageContext.idolInfo
+const Page: React.SFC<IProps> = props => {
+  const profile: IIdol = props.pageContext.idol
+  const imgs: {
+    id: string
+    fluid: FluidObject
+  }[] = props.data.allImageSharp.edges.map(edge => edge.node)
   return (
     <>
       <Layout>
-        <Container>
-          <IdolHeader name={name}></IdolHeader>
-          {/* <Flex>{cardsRender(name, cards)}</Flex> */}
-        </Container>
+        <IdolContext.Provider
+          value={{
+            profile,
+            imgs,
+          }}
+        >
+          <Container>
+            <IdolHeader />
+            <IdolBody />
+          </Container>
+        </IdolContext.Provider>
       </Layout>
     </>
   )
 }
 
 export default Page
+
+export const pageQuery = graphql`
+  query IdolCardImagesQuery($reg: String!) {
+    allImageSharp(filter: { fluid: { originalName: { regex: $reg } } }) {
+      edges {
+        node {
+          id
+          fluid(quality: 80, maxWidth: 1000) {
+            originalName
+            originalImg
+            base64
+            tracedSVG
+            aspectRatio
+            src
+            srcSet
+            srcWebp
+            srcSetWebp
+            sizes
+          }
+        }
+      }
+    }
+  }
+`

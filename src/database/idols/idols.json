@@ -1,8 +1,9 @@
 [
   {
-    "name": "Manabe Mizuki",
-    "cv": "Abe Rika",
-    "imageColor": "#99b7dc",
+    "firstName": "Mizuki",
+    "lastName": "Manabe",
+    "cv": "Rika Abe",
+    "color": "#99b7dc",
     "tdType": "Fairy",
     "gmType": "Dance",
     "height": "160cm",
@@ -29,6 +30,14 @@
         "avability": "Limited",
         "passive": "C+",
         "stat": "Vi",
+        "costumes": []
+      },
+      {
+        "name": "EScape",
+        "rarity": "SR",
+        "avability": "Event",
+        "passive": "D+",
+        "stat": "Vo",
         "costumes": []
       }
     ]

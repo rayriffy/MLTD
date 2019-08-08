@@ -1,5 +1,4 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import { createGlobalStyle } from "styled-components"
 
 import Navbar from "./navbar"
@@ -18,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    background-image: linear-gradient(to top, #fff, #e1e1e1);
   }
 
   *, *::before, *::after {

@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "mltd",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "The idolmaster Million Live Theater Days English Database.",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "KoFeeBriAN <coffeetk2017@gmail.com>",
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@types/lodash": "^4.14.136",
@@ -31,7 +31,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-typography": "^0.16.19",
-    "rebass": "^3.1.1",
+    "rebass": "^4.0.1",
     "styled-components": "^4.3.2",
     "typography": "^0.16.19"
   },
